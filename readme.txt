@@ -17,6 +17,8 @@ This plugin adds silent duplicate detection to the popular <a href="http://www.g
 
 The plugin prevents duplicate submissions in two ways: first, a small bit of JavaScript is loaded into the page that disables the submit button(s) on form submit. Second, the plugin tracks the `gform_unique_id` field that's automatically added to the bottom of every Gravity Form. Upon submission this unique ID is stored in a PHP session - if that ID is already present the plugin will prevent Gravity Forms from saving the data or sending any notifications but the form will appear (to the user) to have been submitted successfully (in the case of the first submission, that will be true).
 
+Plugin development can be tracked on the project's Github Page: https://github.com/buckii/gravityforms-duplicateprevention
+
 
 == Installation ==
 
@@ -29,7 +31,7 @@ The plugin prevents duplicate submissions in two ways: first, a small bit of Jav
 
 = What versions of Gravity Forms has this plugin been tested against? =
 
-The plugin was developed against Gravity Forms version 1.6.11, the most current at the time. If you find issues with newer versions please file a bug report at {link}
+The plugin was developed against Gravity Forms version 1.6.11, the most current at the time. If you find issues with newer versions please file a bug report at https://github.com/buckii/gravityforms-duplicateprevention.
 
 = Can I prevent loading the client-side scripting? =
 
@@ -39,7 +41,7 @@ Yes! The JavaScript file is a very simple jQuery-powered event listener. If you'
 
 = How can I contribute to the further development of this plugin? =
 
-The plugin's source is hosted on Github: {link}. If you'd like to contribute, please feel free to send us a pull request or contact us there.
+The plugin's source is hosted on Github: https://github.com/buckii/gravityforms-duplicateprevention. If you'd like to contribute, please feel free to send us a pull request or contact us there.
 
 
 == Changelog ==

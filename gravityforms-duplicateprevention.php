@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Gravity Forms Duplicate Prevention
- * Plugin URI: https://github.com/buckii/gravityforms-duplicateprevention
+ * Plugin URI: http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  * Description: Prevent duplicate form submissions on both the client- and server-sides. Requires Gravity Forms.
  * Author: Buckeye Interactive
  * Version: 0.1

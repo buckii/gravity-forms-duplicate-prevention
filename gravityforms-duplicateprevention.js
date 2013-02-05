@@ -4,7 +4,7 @@
  * @subpackage Gravity Forms Duplicate Prevention
  * @author Buckeye Interactive
  * @version 0.1
- * @see https://github.com/buckii/gravityforms-duplicateprevention
+ * @link http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  */
 /*global jQuery: true */
 /*jslint white: true */
