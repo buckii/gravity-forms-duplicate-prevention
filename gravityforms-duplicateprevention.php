@@ -39,7 +39,7 @@ class GravityFormsDuplicatePrevention {
    */
   protected function log( $message, $debug=false ) {
     if ( ! $debug || WP_DEBUG ) {
-      error_log( sprintf( 'Gravity Forms Duplicate Prevention: %s', $message ) );
+      error_log( sprintf( 'GFDP: %s', $message ) );
     }
   }
 
@@ -55,8 +55,8 @@ class GravityFormsDuplicatePrevention {
   }
 
   /**
-   * Verify that a form isn't being double submitted by checking the gform_unique_id against the session
-   * If the so-called unique ID matches what's in the session then the user has most likely double-clicked the submit
+   * Verify that a form submission is unique by creating and checking a md5 hash of the values against the session
+   * If the generated hash matches what's in the session then the user has most likely double-clicked the submit
    * button, causing a duplicate entry. In these instances we'll simulate a non-empty honeypot form field, tricking
    * Gravity Forms into pretending the submission was successful while actually disregarding the submission.
    *
@@ -65,21 +65,30 @@ class GravityFormsDuplicatePrevention {
    * @see http://www.gravityhelp.com/documentation/page/Gform_validation
    */
   public function duplicate_detection( $validation_result ) {
-    $uid = $_REQUEST['gform_unique_id'];
+    $hash = $this->hash_array( $_POST );
 
     // If this unique ID is already in our session the form is likely a double submission
-    if ( isset( $_SESSION['gform_unique_id'] ) && $_SESSION['gform_unique_id'] == $uid ) {
+    if ( isset( $_SESSION['gform_hash'] ) && $_SESSION['gform_hash'] == $hash ) {
 
       // Make Gravity Forms think there's a honeypot mismatch
       $validation_result['form']['enableHoneypot'] = true;
       $_POST[ sprintf( 'input_%d', self::get_max_field_id( $validation_result['form'] ) + 1 ) ] = 'duplicate';
-      $this->log( sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ) );
+      $this->log( sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ), false );
 
     } else {
       // Store $uid in the session - this is either the first or only time they've submitted this UID
-      $_SESSION['gform_unique_id'] = $uid;
+      $_SESSION['gform_hash'] = $hash;
     }
     return $validation_result;
+  }
+
+  /**
+   * Create a cryptographic hash for an array
+   * @param array $array The array to hash
+   * @return str
+   */
+  protected static function hash_array( $array=array() ) {
+    return md5( print_r( $array, true ) );
   }
 
   /**
