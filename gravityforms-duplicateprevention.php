@@ -14,13 +14,15 @@ class GravityFormsDuplicatePrevention {
   /**
    * @var str Plugin release version
    */
-  public static $plugin_version = '0.1';
+  public static $plugin_version;
 
   /**
    * Class constructor
    * @uses add_filter()
    */
   public function __construct() {
+    $this->plugin_version = '0.1';
+
     // Attempt to start the PHP session
     $this->start_session();
 
