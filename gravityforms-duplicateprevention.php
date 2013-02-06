@@ -32,6 +32,18 @@ class GravityFormsDuplicatePrevention {
   }
 
   /**
+   * Send a message to the log files
+   * @param str $message The message to write
+   * @param bool $debug Should this message only be written if WP_DEBUG is true?
+   * @return void
+   */
+  protected function log( $message, $debug=false ) {
+    if ( ! $debug || WP_DEBUG ) {
+      error_log( sprintf( 'Gravity Forms Duplicate Prevention: %s', $message ) );
+    }
+  }
+
+  /**
    * Since WordPress doesn't use sessions we'll need to manually start one
    * @return bool
    */
@@ -57,12 +69,11 @@ class GravityFormsDuplicatePrevention {
 
     // If this unique ID is already in our session the form is likely a double submission
     if ( isset( $_SESSION['gform_unique_id'] ) && $_SESSION['gform_unique_id'] == $uid ) {
+
       // Make Gravity Forms think there's a honeypot mismatch
       $validation_result['form']['enableHoneypot'] = true;
       $_POST[ sprintf( 'input_%d', self::get_max_field_id( $validation_result['form'] ) + 1 ) ] = 'duplicate';
-      if ( WP_DEBUG ) {
-        error_log( sprintf( 'Gravity Forms Duplicate Prevention: Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ) );
-      }
+      $this->log( sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ) );
 
     } else {
       // Store $uid in the session - this is either the first or only time they've submitted this UID
