@@ -15,16 +15,15 @@ This plugin adds silent duplicate detection to the popular <a href="http://www.g
 
 = How does it work? =
 
-The plugin prevents duplicate submissions in two ways: first, a small bit of JavaScript is loaded into the page that disables the submit button(s) on form submit. Second, the plugin tracks the `gform_unique_id` field that's automatically added to the bottom of every Gravity Form. Upon submission this unique ID is stored in a PHP session - if that ID is already present the plugin will prevent Gravity Forms from saving the data or sending any notifications but the form will appear (to the user) to have been submitted successfully (in the case of the first submission, that will be true).
+The plugin prevents duplicate submissions in two ways: first, a small bit of JavaScript is loaded into the page that disables the submit button(s) on form submit. Second, the plugin creates a cryptographic hash of the form data upon submission. This unique hash is compared to a hash stored in a PHP session (if available) and, if a matching hash is found, the form data is altered to simulate a failing honeypot condition. Like with all failed honeypots, Gravity Forms will skip saving the data or sending any notifications but the form will appear (to the user) to have been submitted successfully.
 
 Plugin development can be tracked on the project's Github Page: https://github.com/buckii/gravityforms-duplicateprevention
 
 
 == Installation ==
 
-1. Upload the gravityforms-nonce plugin directory to your WordPress plugins directory
+1. Upload the gravity-forms-duplicate-prevention plugin to your WordPress plugins directory
 2. Activate the plugin
-3. Add a nonce field to your Gravity Forms forms the same way you would any other field.
 
 
 == Frequently Asked Questions ==
