@@ -62,6 +62,10 @@ class GravityFormsDuplicatePrevention {
    * button, causing a duplicate entry. In these instances we'll simulate a non-empty honeypot form field, tricking
    * Gravity Forms into pretending the submission was successful while actually disregarding the submission.
    *
+   * Site owners:
+   * If you need to access the $validation_result variable after a failed hash check you can do so by listening for
+   * the gform_duplicate_prevention_duplicate_entry action hook.
+   *
    * @param array $validation_result The array passed to us by the gform_validation filter
    * @return bool
    * @see http://www.gravityhelp.com/documentation/page/Gform_validation
@@ -73,9 +77,11 @@ class GravityFormsDuplicatePrevention {
     if ( isset( $_SESSION['gform_hash'] ) && $_SESSION['gform_hash'] == $hash ) {
 
       // Make Gravity Forms think there's a honeypot mismatch
+      $form = $validation_result;
       $validation_result['form']['enableHoneypot'] = true;
       $_POST[ sprintf( 'input_%d', self::get_max_field_id( $validation_result['form'] ) + 1 ) ] = 'duplicate';
       $this->log( sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ), false );
+      do_action( 'gform_duplicate_prevention_duplicate_entry', $form );
 
     } else {
       // Store $uid in the session - this is either the first or only time they've submitted this UID
