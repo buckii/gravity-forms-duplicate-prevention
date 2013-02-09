@@ -3,7 +3,7 @@ Contributors: BuckeyeInteractive, stevegrunwell
 Tags: Forms, Gravity Forms
 Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 0.1
+Stable tag: 0.1.1
 License: GPLv2 or later
 
 Silently prevent duplicate Gravity Form submissions.
