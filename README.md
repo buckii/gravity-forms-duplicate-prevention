@@ -10,7 +10,7 @@ The plugin prevents duplicate submissions in two ways: first, a small bit of Jav
 
 ### What versions of Gravity Forms has this plugin been tested against?
 
-The plugin was developed against Gravity Forms version 1.6.11, the most current at the time. If you find issues with newer versions please file a bug report at [https://github.com/buckii/gravityforms-duplicateprevention](https://github.com/buckii/gravityforms-duplicateprevention).
+The plugin was developed against Gravity Forms version 1.6.11, the most current at the time. If you find issues with newer versions please file a bug report at [https://github.com/buckii/gravity-forms-duplicate-prevention](https://github.com/buckii/gravity-forms-duplicate-prevention).
 
 ### Can I prevent loading the client-side scripting?
 
