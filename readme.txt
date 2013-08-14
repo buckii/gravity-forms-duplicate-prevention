@@ -3,7 +3,7 @@ Contributors: BuckeyeInteractive, stevegrunwell
 Tags: Forms, Gravity Forms
 Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 
 Silently prevent duplicate Gravity Form submissions.
@@ -58,6 +58,9 @@ The plugin's source is hosted on Github: [https://github.com/buckii/gravity-form
 
 == Changelog ==
 
+= 0.1.2 =
+* Fixed strict notices regarding the plugin version
+
 = 0.1.1 =
 * Added `gform_duplicate_prevention_duplicate_entry` action hook that fires when a duplicate entry is detected
 * Documentation updates
@@ -66,6 +69,9 @@ The plugin's source is hosted on Github: [https://github.com/buckii/gravity-form
 * First public version of the plugin
 
 == Upgrade Notice ==
+
+= 0.1.2 =
+Fixed strict standards notices in WordPress 3.6
 
 = 0.1.1 =
 Added a new action hook that allows access to duplicate submission data.

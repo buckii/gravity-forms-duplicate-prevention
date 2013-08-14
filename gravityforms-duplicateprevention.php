@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  * Description: Prevent duplicate form submissions on both the client- and server-sides. Requires Gravity Forms.
  * Author: Buckeye Interactive
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author URI: http://www.buckeyeinteractive.com
  * License: GPL2
  */
@@ -12,17 +12,15 @@
 class GravityFormsDuplicatePrevention {
 
   /**
-   * @var str Plugin release version
+   * Plugin release version
    */
-  public static $plugin_version;
+  const PLUGIN_VERSION = '0.1.2';
 
   /**
    * Class constructor
    * @uses add_filter()
    */
   public function __construct() {
-    $this->plugin_version = '0.1.1';
-
     // Attempt to start the PHP session
     $this->start_session();
 
@@ -131,7 +129,7 @@ class GravityFormsDuplicatePrevention {
    * @uses wp_register_script()
    */
   public function load_script() {
-    wp_register_script( 'gform-duplicateprevention', plugins_url( 'gravityforms-duplicateprevention.js', __FILE__ ), array( 'jquery' ), $this->plugin_version, true );
+    wp_register_script( 'gform-duplicateprevention', plugins_url( 'gravityforms-duplicateprevention.js', __FILE__ ), array( 'jquery' ), self::PLUGIN_VERSION, true );
 
     // Unless the site owner tells us not to load our script with the other Gravity Forms scripting
     if ( apply_filters( 'gform_duplicate_prevention_load_script', true ) ) {

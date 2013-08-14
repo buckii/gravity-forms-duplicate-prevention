@@ -37,6 +37,10 @@ Send us a pull request!
 
 ## Changelog
 
+### 0.1.2
+
+* Fixed strict standards notices in WordPress 3.6
+
 ### 0.1.1
 
 * Added `gform_duplicate_prevention_duplicate_entry` action hook that fires when a duplicate entry is detected
