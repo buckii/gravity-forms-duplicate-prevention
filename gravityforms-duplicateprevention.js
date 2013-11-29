@@ -3,7 +3,7 @@
  * @package Gravity Forms
  * @subpackage Gravity Forms Duplicate Prevention
  * @author Buckeye Interactive
- * @version 0.1.2
+ * @version 0.1.3
  * @link http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  */
 /*global jQuery: true */
@@ -14,7 +14,7 @@ jQuery ( function ( $ ) {
   "use strict";
 
   /** Intercept form submissions and disable the submit button */
-  $('form').on( 'submit', function () {
+  $('.gform_wrapper form').on( 'submit', function () {
     $(this).find( 'input[type="submit"], button[type="submit"]' ).attr( 'disabled', 'disabled' ).addClass( 'gravityforms-duplicateprevention-loading' );
   });
 

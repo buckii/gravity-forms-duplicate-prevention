@@ -58,6 +58,9 @@ The plugin's source is hosted on Github: [https://github.com/buckii/gravity-form
 
 == Changelog ==
 
+= 0.1.3 =
+* Limit the scope of the JavaScript button disabling to submit buttons within `.gform_wrapper` elements (thanks to Mike Yott for catching this!)
+
 = 0.1.2 =
 * Fixed strict notices regarding the plugin version
 
