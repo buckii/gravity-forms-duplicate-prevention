@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  * Description: Prevent duplicate form submissions on both the client- and server-sides. Requires Gravity Forms.
  * Author: Buckeye Interactive
- * Version: 0.1.4a
+ * Version: 0.1.4
  * Author URI: http://www.buckeyeinteractive.com
  * License: GPL2
  */
@@ -14,7 +14,7 @@ class GravityFormsDuplicatePrevention {
   /**
    * Plugin release version
    */
-  const PLUGIN_VERSION = '0.1.4a';
+  const PLUGIN_VERSION = '0.1.4';
 
   /**
    * Class constructor
@@ -24,8 +24,8 @@ class GravityFormsDuplicatePrevention {
     // Attempt to start the PHP session
     $this->start_session();
 
-	// Support GF Logging
-	add_filter( 'gform_logging_supported', array( $this, 'set_logging_supported' ) );
+    // Support GF Logging
+    add_filter( 'gform_logging_supported', array( $this, 'set_logging_supported' ) );
 
     // Apply our server-side filtering
     add_filter( 'gform_validation', array( &$this, 'duplicate_detection' ), 10, 1 );
@@ -45,10 +45,10 @@ class GravityFormsDuplicatePrevention {
       error_log( sprintf( 'GFDP: %s', $message ) );
     }
     if ( class_exists( 'GFLogging' ) ) {
-		GFLogging::include_logger();
-		$level = $debug ? KLogger::ERROR : KLogger::DEBUG; // Treat messages shown with WP_DEBUG on as errors
-		GFLogging::log_message( 'gfdp', $message, $level );
-	}
+      GFLogging::include_logger();
+      $level = $debug ? KLogger::ERROR : KLogger::DEBUG; // Treat messages shown with WP_DEBUG on as errors
+      GFLogging::log_message( 'gfdp', $message, $level );
+    }
   }
 
   public function set_logging_supported( $plugins ) {

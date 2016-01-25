@@ -3,7 +3,7 @@
  * @package Gravity Forms
  * @subpackage Gravity Forms Duplicate Prevention
  * @author Buckeye Interactive
- * @version 0.1.3
+ * @version 0.1.4
  * @link http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  */
 /*global jQuery: true */

@@ -2,8 +2,8 @@
 Contributors: BuckeyeInteractive, stevegrunwell
 Tags: Forms, Gravity Forms
 Requires at least: 3.5
-Tested up to: 3.5.1
-Stable tag: 0.1.2
+Tested up to: 4.4.1
+Stable tag: 0.1.4
 License: GPLv2 or later
 
 Silently prevent duplicate Gravity Form submissions.
@@ -57,6 +57,9 @@ The plugin's source is hosted on Github: [https://github.com/buckii/gravity-form
 
 
 == Changelog ==
+
+= 0.1.4 =
+* Integrate Gravity Forms logging support (thanks Justin Foell).
 
 = 0.1.3 =
 * Limit the scope of the JavaScript button disabling to submit buttons within `.gform_wrapper` elements (thanks to Mike Yott for catching this!)
