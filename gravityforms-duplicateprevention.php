@@ -91,7 +91,7 @@ class GravityFormsDuplicatePrevention {
       $form = $validation_result;
       $validation_result['form']['enableHoneypot'] = true;
       $_POST[ sprintf( 'input_%d', self::get_max_field_id( $validation_result['form'] ) + 1 ) ] = 'duplicate';
-      $this->log( sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $_POST, true ) ), false );
+      $this->log( $this->format_log( $validation_result ), false );
       do_action( 'gform_duplicate_prevention_duplicate_entry', $form );
 
     } else {
@@ -99,6 +99,24 @@ class GravityFormsDuplicatePrevention {
       $_SESSION['gform_hash'] = $hash;
     }
     return $validation_result;
+  }
+
+  protected function format_log( $validation_result ) {
+	  $input = $_POST; // Make a copy.
+
+	  foreach ( $validation_result['form']['fields'] as $field ) {
+		  // Filter credit card numbers.
+		  if ( $field instanceof GF_Field_CreditCard ) {
+			  foreach ( range( 1, 5 ) as $input_id ) {
+				  $input_name = "input_{$field->id}_{$input_id}";
+
+				  if ( isset( $input[$input_name] ) ) {
+					  $input[$input_name] = $field->get_value_save_entry( $input[$input_name], NULL, $input_name, NULL, NULL ); // $form, $lead_id, and $lead params not used for credit card.
+				  }
+			  }
+		  }
+	  }
+	  return sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $input, true ) );
   }
 
   /**
