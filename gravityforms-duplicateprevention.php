@@ -9,6 +9,11 @@
  * License: GPL2
  */
 
+/**
+ * Fork of plugin to work on Pantheon.
+ * URI: github.com/slancio/gravity-forms-duplicate-prevention/
+ */
+
 class GravityFormsDuplicatePrevention {
 
   /**
@@ -21,6 +26,11 @@ class GravityFormsDuplicatePrevention {
    * @uses add_filter()
    */
   public function __construct() {
+    // Set session.save_handler to file to play nice with Pantheon
+    if ( ! ini_get( 'session.save_handler' ) ) : 
+          ini_set( 'session.save_handler', 'file' );
+    endif;    
+      
     // Attempt to start the PHP session
     $this->start_session();
 
