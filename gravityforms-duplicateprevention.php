@@ -21,6 +21,15 @@ class GravityFormsDuplicatePrevention {
    * @uses add_filter()
    */
   public function __construct() {
+
+    // Hosts like Pantheon throw a 500 when session_start() is called and
+    // non-file based session handling is in place. This filter allows us
+    // to only control the usage of this plugin when an applicable session
+    // handler is in place
+
+    if ( ! apply_filters( 'gform_duplicate_prevention_execute', true ) ) {
+        return;
+    }
     // Attempt to start the PHP session
     $this->start_session();
 
