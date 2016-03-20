@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/gravity-forms-duplicate-prevention/
  * Description: Prevent duplicate form submissions on both the client- and server-sides. Requires Gravity Forms.
  * Author: Buckeye Interactive
- * Version: 0.1.4
+ * Version: 0.1.5
  * Author URI: http://www.buckeyeinteractive.com
  * License: GPL2
  */
@@ -14,7 +14,7 @@ class GravityFormsDuplicatePrevention {
   /**
    * Plugin release version
    */
-  const PLUGIN_VERSION = '0.1.4';
+  const PLUGIN_VERSION = '0.1.5';
 
   /**
    * Class constructor
@@ -111,21 +111,21 @@ class GravityFormsDuplicatePrevention {
   }
 
   protected function format_log( $validation_result ) {
-	  $input = $_POST; // Make a copy.
+      $input = $_POST; // Make a copy.
 
-	  foreach ( $validation_result['form']['fields'] as $field ) {
-		  // Filter credit card numbers.
-		  if ( $field instanceof GF_Field_CreditCard ) {
-			  foreach ( range( 1, 5 ) as $input_id ) {
-				  $input_name = "input_{$field->id}_{$input_id}";
+      foreach ( $validation_result['form']['fields'] as $field ) {
+          // Filter credit card numbers.
+          if ( $field instanceof GF_Field_CreditCard ) {
+              foreach ( range( 1, 5 ) as $input_id ) {
+                  $input_name = "input_{$field->id}_{$input_id}";
 
-				  if ( isset( $input[$input_name] ) ) {
-					  $input[$input_name] = $field->get_value_save_entry( $input[$input_name], NULL, $input_name, NULL, NULL ); // $form, $lead_id, and $lead params not used for credit card.
-				  }
-			  }
-		  }
-	  }
-	  return sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $input, true ) );
+                  if ( isset( $input[$input_name] ) ) {
+                      $input[$input_name] = $field->get_value_save_entry( $input[$input_name], NULL, $input_name, NULL, NULL ); // $form, $lead_id, and $lead params not used for credit card.
+                  }
+              }
+          }
+      }
+      return sprintf( 'Blocking duplicate submission for form ID %d: %s', $validation_result['form']['id'], print_r( $input, true ) );
   }
 
   /**

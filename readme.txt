@@ -3,7 +3,7 @@ Contributors: BuckeyeInteractive, stevegrunwell
 Tags: Forms, Gravity Forms
 Requires at least: 3.5
 Tested up to: 4.4.1
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 
 Silently prevent duplicate Gravity Form submissions.
@@ -57,6 +57,9 @@ The plugin's source is hosted on Github: [https://github.com/buckii/gravity-form
 
 
 == Changelog ==
+
+= 0.1.5 =
+* Add credit card number obfuscation (thanks Justin Foell) and `gform_duplicate_prevention_execute` filter (thanks Mat Gargano).
 
 = 0.1.4 =
 * Integrate Gravity Forms logging support (thanks Justin Foell).

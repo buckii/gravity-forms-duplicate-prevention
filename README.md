@@ -37,6 +37,10 @@ Send us a pull request!
 
 ## Changelog
 
+### 0.1.5
+
+* Add credit card number obfuscation (thanks Justin Foell) and `gform_duplicate_prevention_execute` filter (thanks Mat Gargano).
+
 ### 0.1.4
 
 * Integrate Gravity Forms logging support (thanks Justin Foell).
