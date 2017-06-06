@@ -30,14 +30,17 @@ class GravityFormsDuplicatePrevention {
     if ( ! apply_filters( 'gform_duplicate_prevention_execute', true ) ) {
         return;
     }
-    // Attempt to start the PHP session
-    $this->start_session();
 
-    // Support GF Logging
-    add_filter( 'gform_logging_supported', array( $this, 'set_logging_supported' ) );
+    if ( apply_filters( 'gform_duplicate_prevention_duplicate_detection', true ) ) {
+      // Attempt to start the PHP session
+      $this->start_session();
 
-    // Apply our server-side filtering
-    add_filter( 'gform_validation', array( &$this, 'duplicate_detection' ), 10, 1 );
+      // Support GF Logging
+      add_filter( 'gform_logging_supported', array( $this, 'set_logging_supported' ) );
+
+      // Apply our server-side filtering
+      add_filter( 'gform_validation', array( &$this, 'duplicate_detection' ), 10, 1 );
+    }
 
     // Enqueue our client-side script
     $this->load_script();
