@@ -14,8 +14,7 @@ jQuery ( function ( $ ) {
   "use strict";
 
   /** Intercept form submissions and disable the submit button */
-  $('.gform_wrapper form').on( 'submit', function () {
-    $(this).find( 'input[type="submit"], button[type="submit"]' ).attr( 'disabled', 'disabled' ).addClass( 'gravityforms-duplicateprevention-loading' );
+  $('.gform_wrapper form').on('submit.test', function () {
+    $(this).find( 'input[type="submit"], button[type="submit"]' ).addClass( 'gravityforms-duplicateprevention-loading' );
   });
-
 });
